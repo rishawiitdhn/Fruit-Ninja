@@ -139,16 +139,16 @@ canvas.addEventListener("mousemove", (event) => {
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
 
-    // Store the current mouse position
+    
     mousePath.push({ x: mouseX, y: mouseY });
 
-    // Remove old points to maintain a short path history
+    
     if (mousePath.length > maxPathLength) {
         mousePath.shift();
     }
 });
 
-// Detect mouse slicing
+
 function checkSlice(fruit) {
     for (let i = 0; i < mousePath.length - 1; i++) {
         const p1 = mousePath[i];
