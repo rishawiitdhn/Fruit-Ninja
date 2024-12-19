@@ -5,8 +5,8 @@ canvas.height = 585;
 let gravity = 0.02;
 let score = 0;
 let scorePara = document.querySelector("#score");
-let mousePath = []; // Store recent mouse positions
-const maxPathLength = 5; // Limit the path history for performance
+let mousePath = []; 
+const maxPathLength = 5; 
 
 c.fillRect(300, 100, canvas.width, canvas.height);
 
@@ -154,38 +154,37 @@ function checkSlice(fruit) {
         const p1 = mousePath[i];
         const p2 = mousePath[i + 1];
 
-        // Check if the line (p1, p2) intersects with the fruit
+        
         if (
             p1.x < fruit.position.x + fruit.width &&
             p2.x > fruit.position.x &&
             p1.y < fruit.position.y + fruit.height &&
             p2.y > fruit.position.y
         ) {
-            return true; // Fruit is sliced
+            return true; 
         }
     }
     return false;
 }
 
-// Update fruits and check for slicing
+
 function ejecting() {
     for (let fruit of fruits) {
         fruit.update();
 
-        // Check if the fruit is sliced
+        
         if (checkSlice(fruit)) {
             console.log(`${fruit.color} fruit sliced!`);
-            // Perform actions (e.g., increase score, remove fruit)
             score += 10;
             scorePara.textContent = `Score: ${score}`;
 
-            // Remove or reset the fruit
-            fruit.position.y = canvas.height + 100; // Move fruit off-screen
+            
+            fruit.position.y = canvas.height + 100; 
         }
     }
 }
 
-// Add slicing effect (optional)
+
 function drawSlice() {
     c.strokeStyle = "white";
     c.lineWidth = 2;
@@ -205,12 +204,8 @@ const animate = () => {
 window.requestAnimationFrame(animate);
     c.fillStyle = "black";
     c.fillRect(300, 100, canvas.width, canvas.height - 100);
-
     ejecting();
-    drawSlice();
-    
-   
-
+    drawSlice(); 
 }
 animate();
 
